@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "CCTRDG // REV-01",
+  title: "CLOCKWISE // REV-01",
   description: "Counter-Clockwise R&D Group",
 };
 

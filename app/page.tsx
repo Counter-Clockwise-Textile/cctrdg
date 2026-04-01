@@ -1,102 +1,109 @@
 'use client';
 
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 // --- Sub-Components ---
 
+const GrainOverlay = () => (
+  <div className="pointer-events-none fixed inset-0 z-[100] opacity-[0.03] contrast-150 brightness-110" 
+       style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3C%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
+  </div>
+);
+
 const Nav = () => (
-  <nav className="fixed top-0 w-full z-50 mix-blend-difference flex justify-between p-6 items-center border-b border-white/10 backdrop-blur-sm text-white">
-    <div className="font-bold tracking-tighter text-2xl">R&D // REV-01</div>
-    <div className="flex gap-8 text-xs uppercase tracking-widest font-mono text-white/70">
-      <a href="#" className="hover:text-blue-400 transition-colors">Archive</a>
-      <a href="#" className="hover:text-blue-400 transition-colors">Temporal-Shop</a>
-      <a href="#" className="hover:text-blue-400 transition-colors">Cart (0)</a>
+  <nav className="fixed top-0 w-full z-50 flex justify-between p-6 items-center border-b border-white/5 backdrop-blur-md bg-black/40">
+    <div className="font-bold tracking-tighter text-2xl text-white drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
+      CCTRDG // <span className="text-blue-400">LAB-01</span>
+    </div>
+    <div className="flex gap-8 text-[10px] uppercase tracking-[0.3em] font-mono text-white/50">
+      <a href="#" className="hover:text-blue-300 transition-all hover:drop-shadow-[0_0_5px_rgba(59,130,246,1)]">Inventory</a>
+      <a href="#" className="hover:text-blue-300 transition-all">Cart (0)</a>
     </div>
   </nav>
 );
 
-const ReverseTimer = () => {
-  const [time, setTime] = useState(9999);
-  useEffect(() => {
-    const interval = setInterval(() => setTime(t => (t <= 0 ? 9999 : t - 1)), 100);
-    return () => clearInterval(interval);
-  }, []);
-  return <div className="text-blue-400 text-xl font-mono">{time.toString().padStart(6, '0')}</div>;
-};
-
-const TemporalClock = () => (
-  <div className="relative w-64 h-64 md:w-96 md:h-96 border border-white/20 rounded-full flex items-center justify-center">
-    <motion.div 
-      animate={{ rotate: -360 }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      className="absolute inset-0 border-2 border-dashed border-blue-500/40 rounded-full"
-    />
-    <div className="text-center font-mono">
-      <h2 className="text-4xl md:text-6xl font-bold tracking-tighter italic text-white">T-MINUS</h2>
-      <ReverseTimer />
-    </div>
-  </div>
+const NeonTube = () => (
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-32 bg-blue-400 shadow-[0_0_15px_#3b82f6,0_0_30px_#3b82f6,0_0_60px_#1e3a8a] z-10 opacity-80" />
 );
 
 const ProductCard = ({ title, year, category }: { title: string; year: string; category: string }) => (
   <motion.div 
-    whileHover={{ skewX: -3 }}
-    className="border border-white/10 p-6 group cursor-crosshair bg-black hover:border-blue-500 transition-all"
+    whileHover={{ scale: 1.02, rotateY: -5 }}
+    className="relative overflow-hidden border border-white/10 p-8 group cursor-crosshair bg-[#0a0a0a] transition-all"
+    style={{ 
+      backgroundImage: `linear-gradient(to bottom right, rgba(255,255,255,0.05), transparent)`,
+      boxShadow: 'inset 0 0 20px rgba(0,0,0,0.8)' 
+    }}
   >
-    <div className="flex justify-between items-start mb-12">
-      <span className="font-mono text-[10px] text-white/40">REF_{year}</span>
-      <div className="w-2 h-2 bg-blue-500 animate-pulse" />
+    {/* Leather Texture Overlay */}
+    <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" 
+         style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/black-linen.png')` }} />
+    
+    <div className="flex justify-between items-start mb-16 relative z-10">
+      <span className="font-mono text-[9px] tracking-widest text-white/30 italic">PROTO_{year}</span>
+      <div className="w-1.5 h-1.5 bg-blue-500 shadow-[0_0_8px_#3b82f6] rounded-full animate-pulse" />
     </div>
-    <h3 className="text-2xl font-bold uppercase mb-2 tracking-tighter group-hover:italic text-white">{title}</h3>
-    <p className="text-xs font-mono text-white/60 uppercase">{category}</p>
-    <div className="mt-8 h-[1px] w-0 group-hover:w-full bg-blue-500 transition-all duration-500" />
+    
+    <h3 className="text-2xl font-black uppercase mb-1 tracking-tighter text-white/90 group-hover:text-blue-400 transition-colors">
+      {title}
+    </h3>
+    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest">{category}</p>
   </motion.div>
 );
 
 // --- Main Page Component ---
 
 export default function TemporalApp() {
-  const { scrollYProgress } = useScroll();
-  const reverseProgress = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const scaleX = useSpring(reverseProgress, { stiffness: 100, damping: 30 });
-
   return (
-    <div className="bg-black text-white min-h-screen selection:bg-blue-500 selection:text-black">
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-blue-500 z-[60] origin-left"
-        style={{ scaleX }}
-      />
+    <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 overflow-x-hidden">
+      <GrainOverlay />
       <Nav />
-      <main>
-        <section className="h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl w-[500px] h-[500px] bg-blue-600 rounded-full" />
-          <TemporalClock />
-          <div className="mt-12 text-center z-10">
-            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-tight text-white">
-              Time was never meant <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 italic">to move forward</span>
-            </h1>
-            <button className="mt-8 px-8 py-3 border border-white hover:bg-white hover:text-black transition-all font-mono uppercase tracking-widest text-sm text-white">
-              Reverse the Clock
-            </button>
+      
+      <main className="relative">
+        {/* Neon Light Source (The "Ceiling" Light) */}
+        <div className="absolute top-0 left-1/4 w-[1px] h-[500px] bg-gradient-to-b from-blue-500/50 to-transparent blur-[1px]" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-[700px] bg-gradient-to-b from-blue-400/30 to-transparent blur-[1px]" />
+
+        {/* Hero Section */}
+        <section className="h-screen flex flex-col items-center justify-center px-6 relative">
+          <NeonTube />
+          
+          {/* Metal Plate Look */}
+          <div className="relative p-12 border border-white/5 bg-[#0a0a0a] shadow-2xl overflow-hidden group">
+             <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+                  style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')` }} />
+             
+             <div className="text-center z-10 relative">
+                <h1 className="text-6xl md:text-[120px] font-black uppercase tracking-[calc(-0.05em)] leading-[0.8] mb-8 drop-shadow-2xl">
+                  RUGGED <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 italic">SENSORY</span>
+                </h1>
+                <div className="inline-block px-10 py-4 border border-blue-500/50 bg-blue-500/5 text-blue-400 font-mono text-xs tracking-[0.4em] uppercase hover:bg-blue-500 hover:text-black transition-all cursor-pointer shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                  Enter Laboratory
+                </div>
+             </div>
           </div>
         </section>
-        <section className="py-32 px-6 max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-16 border-b border-white/10 pb-4">
-            <h2 className="text-xs font-mono uppercase tracking-[0.5em] text-white/40">R&D_Archive // Vol_01</h2>
-            <div className="text-right font-mono text-[10px] text-white/40">TOTAL_RECOVERY: 04</div>
+
+        {/* Archive Section */}
+        <section className="py-32 px-6 max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col mb-20 gap-4">
+             <h2 className="text-[10px] font-mono uppercase tracking-[0.8em] text-blue-500/60">Materials_Database</h2>
+             <div className="h-[1px] w-full bg-gradient-to-r from-blue-500/50 via-white/5 to-transparent" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <ProductCard title="Inverted Parka" year="2026" category="Outerwear" />
-            <ProductCard title="Decay Knit" year="2019" category="Mid-Layer" />
-            <ProductCard title="Static Trouser" year="2024" category="Technical" />
-            <ProductCard title="Zero Shell" year="2025" category="R&D Sample" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+            <ProductCard title="Heavy Hide Parka" year="01" category="Treated Leather" />
+            <ProductCard title="Oxidized Shell" year="02" category="Corroded Nylon" />
+            <ProductCard title="Steel Knit" year="03" category="Metal Infusion" />
           </div>
         </section>
       </main>
-      <footer className="p-12 border-t border-white/10 text-center font-mono text-[10px] uppercase tracking-widest text-white/40 bg-black">
-        &copy; 2026 Counter-Clockwise Group // All Rights Reversed
+
+      <footer className="p-20 border-t border-white/5 bg-black text-center relative overflow-hidden">
+         <div className="font-mono text-[9px] uppercase tracking-[1em] text-white/20">
+           Manual Process // No Digital Symmetry
+         </div>
       </footer>
     </div>
   );
