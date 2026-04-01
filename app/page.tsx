@@ -17,7 +17,6 @@ const ClockFace = () => {
             style={{
               height: i % 5 === 0 ? '25px' : '10px',
               width: i % 5 === 0 ? '2px' : '1px',
-              // This calculation ensures ticks are perfectly radial
               transform: `rotate(${i * 6}deg) translateY(0px)`,
               transformOrigin: `0 400px` 
             }}
@@ -28,18 +27,20 @@ const ClockFace = () => {
   );
 };
 
+// PINNED COMPONENT: Uses absolute positioning to stay relative to the Hero section
 const TemporalHand = () => (
-  <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+  <div className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none">
     {/* The Center Pin */}
     <div className="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6] z-[101]" />
     
     <motion.div 
-      className="absolute bg-gradient-to-t from-blue-500/50 via-[#111] to-[#000] shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+      className="absolute bg-gradient-to-t from-blue-500/50 via-[#111] to-transparent shadow-[0_0_20px_rgba(0,0,0,0.5)]"
       style={{ 
         width: '2px', 
-        height: '400px', 
-        originY: 1, // Pins the bottom of the hand to the center
-        bottom: '50%' 
+        height: '45vh', 
+        maxHeight: '400px',
+        originY: 1, // Pivot at the bottom
+        bottom: '50%' // Start at the vertical center
       }}
       animate={{ rotate: -360 }}
       transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -56,7 +57,7 @@ const GrainOverlay = () => (
 const Nav = () => (
   <nav className="fixed top-0 w-full z-[120] flex justify-between p-6 items-center border-b border-white/5 backdrop-blur-md bg-black/40 text-white">
     <div className="font-bold tracking-tighter text-2xl drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-      CTTRDG // <span className="text-blue-400 font-mono text-lg uppercase">TT-01</span>
+      CLOCKWISE /// <span className="text-blue-400 font-mono text-lg uppercase">RD-1.1</span>
     </div>
     <div className="flex gap-8 text-[10px] uppercase tracking-[0.3em] font-mono text-white/50">
       <a href="#" className="hover:text-blue-300 transition-all">Archive</a>
@@ -99,20 +100,25 @@ export default function TemporalApp() {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 selection:text-white overflow-x-hidden">
-      {/* FORCE FONT IMPORT */}
+      {/* VERCEL FONT COMPATIBILITY */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+
       <style dangerouslySetInnerHTML={{ __html: `
-        @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
         .steel-text {
           font-family: 'UnifrakturMaguntia', serif !important;
-          background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 40%, #475569 50%, #1e293b 60%, #94a3b8 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 40%, #475569 50%, #1e293b 60%, #94a3b8 100%) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          background-clip: text !important;
+          display: inline-block;
           filter: drop-shadow(0 0 2px rgba(255,255,255,0.8)) drop-shadow(0 0 15px rgba(59,130,246,0.4));
         }
       `}} />
 
+      {/* CLOCK BACKGROUND */}
       <ClockFace />
-      <TemporalHand />
 
       <motion.div 
         className="fixed top-0 left-0 right-0 h-[2px] bg-blue-500 z-[130] origin-left shadow-[0_0_15px_#3b82f6]"
@@ -123,14 +129,21 @@ export default function TemporalApp() {
       <Nav />
       
       <main className="relative z-30">
+        {/* HERO SECTION - Relative parent for the TemporalHand */}
         <section className="h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+          
+          {/* THE TICKING HAND - Now travel-locked to this section */}
+          <TemporalHand />
+
           <div className="relative p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden">
              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                   style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')` }} />
              
              <div className="text-center z-10 relative">
                 <div className="mb-6 flex flex-col items-center">
-                   <span className="text-[10px] font-mono tracking-[0.6em] text-white/20 uppercase mb-2">Temporal_Laboratory // TT-01</span>
+                   <span className="text-[10px] font-mono tracking-[0.4em] text-white/20 uppercase mb-2">
+                     counterCLOCKWISE Textile Research and Development Group // RD1.1
+                   </span>
                    <ReverseTimer />
                 </div>
                 
@@ -138,7 +151,7 @@ export default function TemporalApp() {
                    <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
                    <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
                    
-                   <h1 className="steel-text text-[120px] md:text-[250px] leading-[0.8] tracking-tight text-center">
+                   <h1 className="steel-text text-[120px] md:text-[250px] leading-[0.8] tracking-tight text-center lowercase">
                      Clockwise
                    </h1>
                 </div>
@@ -153,6 +166,7 @@ export default function TemporalApp() {
           </div>
         </section>
 
+        {/* PRODUCT GRID */}
         <section className="py-40 px-6 max-w-7xl mx-auto relative z-40">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <ProductCard title="Heavy Hide Parka" year="2026" category="Hand-Treated Leather" />
