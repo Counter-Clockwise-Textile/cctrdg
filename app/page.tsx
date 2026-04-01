@@ -30,8 +30,23 @@ const ClockFace = () => {
 // PINNED COMPONENT: Uses absolute positioning to stay relative to the Hero section
 const TemporalHand = () => (
   <div className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none">
-    {/* The Center Pin */}
-    <div className="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6] z-[101]" />
+    {/* The Machined Metal Pin */}
+    <div 
+      className="w-4 h-4 rounded-full z-[101] relative shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+      style={{
+        background: `radial-gradient(circle at 30% 30%, #94a3b8 0%, #475569 50%, #1e293b 100%)`,
+        boxShadow: `
+          inset -1px -1px 2px rgba(255,255,255,0.4),
+          inset 1px 1px 2px rgba(0,0,0,0.8),
+          0 0 10px rgba(59,130,246,0.2)
+        `,
+        border: '1px solid rgba(255,255,255,0.1)'
+      }}
+    >
+      {/* Optional: Micro-texture overlay for the pin */}
+      <div className="absolute inset-0 rounded-full opacity-20 mix-blend-overlay"
+           style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')` }} />
+    </div>
     
     <motion.div 
       className="absolute bg-gradient-to-t from-blue-500/50 via-[#111] to-transparent shadow-[0_0_20px_rgba(0,0,0,0.5)]"
@@ -39,8 +54,8 @@ const TemporalHand = () => (
         width: '2px', 
         height: '45vh', 
         maxHeight: '400px',
-        originY: 1, // Pivot at the bottom
-        bottom: '50%' // Start at the vertical center
+        originY: 1, 
+        bottom: '50%' 
       }}
       animate={{ rotate: -360 }}
       transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
