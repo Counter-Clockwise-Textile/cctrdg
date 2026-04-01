@@ -27,7 +27,6 @@ const ClockFace = () => {
   );
 };
 
-// PINNED COMPONENT: Uses absolute positioning to stay relative to the Hero section
 const TemporalHand = () => (
   <div className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none">
     {/* The Machined Metal Pin */}
@@ -43,7 +42,6 @@ const TemporalHand = () => (
         border: '1px solid rgba(255,255,255,0.1)'
       }}
     >
-      {/* Optional: Micro-texture overlay for the pin */}
       <div className="absolute inset-0 rounded-full opacity-20 mix-blend-overlay"
            style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/carbon-fibre.png')` }} />
     </div>
@@ -115,24 +113,33 @@ export default function TemporalApp() {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 selection:text-white overflow-x-hidden">
-      {/* VERCEL FONT COMPATIBILITY */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-
+      
+      {/* MACHINED HELVETICA STYLING */}
       <style dangerouslySetInnerHTML={{ __html: `
-        .steel-text {
-          font-family: 'UnifrakturMaguntia', serif !important;
-          background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 40%, #475569 50%, #1e293b 60%, #94a3b8 100%) !important;
+        .machined-text {
+          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          font-weight: 900 !important;
+          text-transform: uppercase !important;
+          background: linear-gradient(to bottom, 
+            #ffffff 0%, 
+            #cbd5e1 45%, 
+            #475569 50%, 
+            #1e293b 55%, 
+            #64748b 100%) !important;
           -webkit-background-clip: text !important;
           -webkit-text-fill-color: transparent !important;
           background-clip: text !important;
-          display: inline-block;
-          filter: drop-shadow(0 0 2px rgba(255,255,255,0.8)) drop-shadow(0 0 15px rgba(59,130,246,0.4));
+          
+          /* ENLARGED BEVEL EFFECT */
+          filter: 
+            drop-shadow(2px 2px 0px rgba(255,255,255,0.4)) 
+            drop-shadow(-2px -2px 0px rgba(0,0,0,0.7))
+            drop-shadow(0px 0px 20px rgba(59,130,246,0.3));
+          
+          letter-spacing: -0.05em;
         }
       `}} />
 
-      {/* CLOCK BACKGROUND */}
       <ClockFace />
 
       <motion.div 
@@ -144,10 +151,8 @@ export default function TemporalApp() {
       <Nav />
       
       <main className="relative z-30">
-        {/* HERO SECTION - Relative parent for the TemporalHand */}
         <section className="h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
           
-          {/* THE TICKING HAND - Now travel-locked to this section */}
           <TemporalHand />
 
           <div className="relative p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden">
@@ -166,7 +171,8 @@ export default function TemporalApp() {
                    <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
                    <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
                    
-                   <h1 className="steel-text text-[120px] md:text-[250px] leading-[0.8] tracking-tight text-center lowercase">
+                   {/* UPDATED HEADER: Helvetica style with Enlarged Bevel */}
+                   <h1 className="machined-text text-[100px] md:text-[200px] leading-[0.8] tracking-tight text-center">
                      Clockwise
                    </h1>
                 </div>
@@ -181,7 +187,6 @@ export default function TemporalApp() {
           </div>
         </section>
 
-        {/* PRODUCT GRID */}
         <section className="py-40 px-6 max-w-7xl mx-auto relative z-40">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <ProductCard title="Heavy Hide Parka" year="2026" category="Hand-Treated Leather" />
