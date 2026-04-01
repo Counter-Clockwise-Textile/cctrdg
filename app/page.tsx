@@ -29,7 +29,7 @@ const ClockFace = () => {
 
 const TemporalHand = () => (
   <div className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none">
-    {/* The Machined Metal Pin */}
+    {/* MACHINED METAL PIVOT PIN */}
     <div 
       className="w-4 h-4 rounded-full z-[101] relative shadow-[0_0_15px_rgba(59,130,246,0.3)]"
       style={{
@@ -114,7 +114,7 @@ export default function TemporalApp() {
   return (
     <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 selection:text-white overflow-x-hidden">
       
-      {/* MACHINED HELVETICA STYLING */}
+      {/* MACHINED HELVETICA & ENLARGED BEVEL STYLING */}
       <style dangerouslySetInnerHTML={{ __html: `
         .machined-text {
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
@@ -135,8 +135,6 @@ export default function TemporalApp() {
             drop-shadow(2px 2px 0px rgba(255,255,255,0.4)) 
             drop-shadow(-2px -2px 0px rgba(0,0,0,0.7))
             drop-shadow(0px 0px 20px rgba(59,130,246,0.3));
-          
-          letter-spacing: -0.05em;
         }
       `}} />
 
@@ -151,35 +149,37 @@ export default function TemporalApp() {
       <Nav />
       
       <main className="relative z-30">
-        <section className="h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+        {/* RESPONSIVE HERO SECTION */}
+        <section className="h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
           
+          {/* THE TICKING HAND - Pinned to the center of this section */}
           <TemporalHand />
 
-          <div className="relative p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden">
+          <div className="relative p-8 md:p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden w-full max-w-[95vw] md:max-w-4xl">
              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                   style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')` }} />
              
              <div className="text-center z-10 relative">
                 <div className="mb-6 flex flex-col items-center">
-                   <span className="text-[10px] font-mono tracking-[0.4em] text-white/20 uppercase mb-2">
+                   <span className="text-[8px] md:text-[10px] font-mono tracking-[0.2em] md:tracking-[0.4em] text-white/20 uppercase mb-2 px-2 text-center max-w-[280px] md:max-w-none">
                      counterCLOCKWISE Textile Research and Development Group // RD1.1
                    </span>
                    <ReverseTimer />
                 </div>
                 
-                <div className="relative mb-14 px-10">
-                   <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
-                   <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-2xl">✦</div>
+                <div className="relative mb-10 md:mb-14 px-2 md:px-10">
+                   <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
+                   <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
                    
-                   {/* UPDATED HEADER: Helvetica style with Enlarged Bevel */}
-                   <h1 className="machined-text text-[100px] md:text-[200px] leading-[0.8] tracking-tight text-center">
+                   {/* FLUID RESPONSIVE LOGO */}
+                   <h1 className="machined-text text-[14vw] md:text-[180px] leading-[0.9] tracking-tighter text-center">
                      Clockwise
                    </h1>
                 </div>
 
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
-                  className="inline-block px-14 py-6 border border-blue-500/40 bg-blue-500/5 text-blue-400 font-mono text-xs tracking-[0.6em] uppercase hover:bg-blue-500 hover:text-black transition-all cursor-crosshair"
+                  className="inline-block px-10 py-4 md:px-14 md:py-6 border border-blue-500/40 bg-blue-500/5 text-blue-400 font-mono text-[10px] md:text-xs tracking-[0.4em] md:tracking-[0.6em] uppercase hover:bg-blue-500 hover:text-black transition-all cursor-crosshair"
                 >
                   Enter Laboratory
                 </motion.div>
