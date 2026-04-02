@@ -90,18 +90,32 @@ const ReverseTimer = () => {
 
 const ProductCard = ({ title, year, category }: { title: string; year: string; category: string }) => (
   <motion.div 
-    whileHover={{ scale: 1.02, rotateY: -3 }}
-    className="relative overflow-hidden border border-white/10 p-12 group cursor-crosshair bg-[#0a0a0a] transition-all z-20"
+    whileHover={{ scale: 1.02 }}
+    className="glitch-hover relative overflow-hidden border border-white/10 p-12 group cursor-crosshair bg-[#0a0a0a] transition-all z-20"
   >
     <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" 
          style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/black-linen.png')` }} />
+    
     <div className="flex justify-between items-start mb-24 relative">
       <span className="font-mono text-[9px] tracking-widest text-white/20 italic">REF_{year}</span>
       <div className="w-1.5 h-1.5 bg-blue-500 shadow-[0_0_10px_#3b82f6] rounded-full animate-pulse" />
     </div>
-    <h3 className="text-3xl font-black uppercase mb-1 tracking-tighter text-white/90 group-hover:text-blue-400 transition-colors">
-      {title}
-    </h3>
+
+    <div className="relative">
+      {/* THE TIME WARP ECHOES */}
+      <span className="glitch-layer hidden absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-cyan-400/40 z-[-1] mix-blend-screen">
+        {title}
+      </span>
+      <span className="glitch-layer hidden absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-red-500/40 z-[-2] mix-blend-screen" style={{ animationDelay: '0.05s' }}>
+        {title}
+      </span>
+
+      {/* PRIMARY TEXT */}
+      <h3 className="text-3xl font-black uppercase mb-1 tracking-tighter text-white/90 group-hover:text-blue-400 transition-colors">
+        {title}
+      </h3>
+    </div>
+    
     <p className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">{category}</p>
   </motion.div>
 );
@@ -114,27 +128,31 @@ export default function TemporalApp() {
   return (
     <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 selection:text-white overflow-x-hidden">
       
-      {/* MACHINED HELVETICA & ENLARGED BEVEL STYLING */}
+      {/* MACHINED HELVETICA & TIME-WARP ANIMATIONS */}
       <style dangerouslySetInnerHTML={{ __html: `
         .machined-text {
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
           font-weight: 900 !important;
           text-transform: uppercase !important;
-          background: linear-gradient(to bottom, 
-            #ffffff 0%, 
-            #cbd5e1 45%, 
-            #475569 50%, 
-            #1e293b 55%, 
-            #64748b 100%) !important;
+          background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 45%, #475569 50%, #1e293b 55%, #64748b 100%) !important;
           -webkit-background-clip: text !important;
           -webkit-text-fill-color: transparent !important;
           background-clip: text !important;
-          
-          /* ENLARGED BEVEL EFFECT */
-          filter: 
-            drop-shadow(2px 2px 0px rgba(255,255,255,0.4)) 
-            drop-shadow(-2px -2px 0px rgba(0,0,0,0.7))
-            drop-shadow(0px 0px 20px rgba(59,130,246,0.3));
+          filter: drop-shadow(2px 2px 0px rgba(255,255,255,0.4)) drop-shadow(-2px -2px 0px rgba(0,0,0,0.7)) drop-shadow(0px 0px 20px rgba(59,130,246,0.3));
+        }
+
+        @keyframes warp {
+          0% { transform: translate(0); }
+          20% { transform: translate(-3px, 1px) skewX(5deg); }
+          40% { transform: translate(3px, -1px) skewX(-5deg); opacity: 0.7; }
+          60% { transform: translate(-1px, 0) skewX(2deg); }
+          80% { transform: translate(1px, 1px) skewX(-2deg); opacity: 0.8; }
+          100% { transform: translate(0); }
+        }
+
+        .glitch-hover:hover .glitch-layer {
+          animation: warp 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+          display: block;
         }
       `}} />
 
@@ -151,10 +169,7 @@ export default function TemporalApp() {
       <main className="relative z-30">
         {/* RESPONSIVE HERO SECTION */}
         <section className="h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
-          
-          {/* THE TICKING HAND - Pinned to the center of this section */}
           <TemporalHand />
-
           <div className="relative p-8 md:p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden w-full max-w-[95vw] md:max-w-4xl">
              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                   style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')` }} />
@@ -170,8 +185,6 @@ export default function TemporalApp() {
                 <div className="relative mb-10 md:mb-14 px-2 md:px-10">
                    <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
                    <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
-                   
-                   {/* FLUID RESPONSIVE LOGO */}
                    <h1 className="machined-text text-[14vw] md:text-[180px] leading-[0.9] tracking-tighter text-center">
                      Clockwise
                    </h1>
