@@ -13,8 +13,8 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.variable}>
-      {/* We removed the white background and default Navbar here */}
+    /* suppressHydrationWarning prevents errors from browser extensions */
+    <html lang="en" className={GeistSans.variable} suppressHydrationWarning>
       <body className="bg-black text-white antialiased">
         {children}
       </body>

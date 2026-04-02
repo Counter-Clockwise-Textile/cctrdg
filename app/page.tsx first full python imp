@@ -1,0 +1,264 @@
+'use client';
+
+import React, { useEffect, useState, useMemo, useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform, useMotionValue } from 'framer-motion';
+import { GeistSans } from "geist/font/sans";
+
+// --- Design System ---
+const DESIGN_SYSTEM = {
+  colors: {
+    accent: '#3b82f6',
+    bg: '#050505',
+    border: 'rgba(255, 255, 255, 0.08)',
+  },
+  animations: {
+    stiffness: 80,
+    damping: 25,
+  }
+};
+
+// --- Atomic Logic ---
+function useHasMounted() {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => setHasMounted(true), []);
+  return hasMounted;
+}
+
+// --- High-Complexity Components ---
+
+/**
+ * RE-ENGINEERED: Reactive Metal Surface
+ * Acts as a light-sensitive plate that reacts to mouse coordinates.
+ */
+const ReactiveMetalSurface = ({ mouseX, mouseY }: { mouseX: any, mouseY: any }) => {
+  const x = useTransform(mouseX, [0, 2000], [5, -5]);
+  const y = useTransform(mouseY, [0, 1200], [5, -5]);
+
+  return (
+    <motion.div 
+      style={{ x, y }}
+      className="pointer-events-none fixed inset-[-5%] z-[10] opacity-[0.08] select-none scale-110"
+    >
+      <div 
+        className="absolute inset-0" 
+        style={{ 
+          backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')`,
+          backgroundSize: '800px' 
+        }} 
+      />
+      {/* Dynamic Cursor Light (The "Flashlight" effect) */}
+      <motion.div 
+        style={{ 
+          left: mouseX, 
+          top: mouseY,
+          background: `radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 60%)`
+        }}
+        className="absolute w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+      />
+    </motion.div>
+  );
+};
+
+const VolumetricClock = ({ mouseX, mouseY }: { mouseX: any, mouseY: any }) => {
+  const x = useTransform(mouseX, [0, 2000], [-15, 15]);
+  const y = useTransform(mouseY, [0, 1200], [-15, 15]);
+  const ticks = useMemo(() => Array.from({ length: 60 }), []);
+
+  return (
+    <motion.div style={{ x, y }} className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none opacity-[0.15]">
+      <div className="relative w-[95vw] h-[95vw] max-w-[900px] max-h-[900px] rounded-full border border-blue-500/10 shadow-[0_0_100px_rgba(59,130,246,0.05)]">
+        {ticks.map((_, i) => (
+          <div 
+            key={i} 
+            className="absolute top-0 left-1/2 -translate-x-1/2 origin-bottom transition-all duration-1000"
+            style={{
+              height: i % 5 === 0 ? '30px' : '12px',
+              width: i % 5 === 0 ? '2px' : '1px',
+              backgroundColor: i % 5 === 0 ? 'rgba(59, 130, 246, 0.4)' : 'rgba(255, 255, 255, 0.1)',
+              transform: `rotate(${i * 6}deg)`,
+              transformOrigin: `0 450px` 
+            }}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
+const ReverseTimer = () => {
+  const [time, setTime] = useState(999999);
+  const mounted = useHasMounted();
+  useEffect(() => {
+    if (!mounted) return;
+    const interval = setInterval(() => setTime(p => (p <= 0 ? 999999 : p - 1)), 100);
+    return () => clearInterval(interval);
+  }, [mounted]);
+  return (
+    <div className="font-mono text-3xl tracking-[0.4em] text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+      {mounted ? time.toString().padStart(6, '0') : "000000"}
+    </div>
+  );
+};
+
+const ProductCard = ({ title, year, category }: { title: string; year: string; category: string }) => (
+  <motion.div 
+    whileHover={{ y: -10, borderColor: 'rgba(59, 130, 246, 0.5)', backgroundColor: '#0c0c0c' }}
+    className="relative group p-14 border border-white/5 bg-[#080808]/80 backdrop-blur-sm transition-all overflow-hidden cursor-pointer shadow-2xl"
+  >
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-blue-600/10 to-transparent" />
+    <div className="relative z-10">
+      <div className="flex justify-between items-start mb-28">
+        <span className="font-mono text-[10px] text-white/20 tracking-[0.3em]">{year} // DATA_NODE</span>
+        <motion.div 
+          animate={{ scale: [1, 1.5, 1] }} 
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="w-2 h-2 rounded-full bg-blue-500" 
+        />
+      </div>
+      <h3 className="text-4xl font-black uppercase tracking-tighter mb-3 group-hover:text-blue-400 transition-colors">{title}</h3>
+      <p className="font-mono text-[9px] uppercase tracking-[0.5em] text-white/10 italic">{category}</p>
+    </div>
+  </motion.div>
+);
+
+// --- Master Page ---
+export default function ClockwiseApex() {
+  const mounted = useHasMounted();
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, DESIGN_SYSTEM.animations);
+
+  // Tracks global mouse movement for parallax
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  if (!mounted) return <div className="bg-black min-h-screen" />;
+
+  return (
+    <div className={`min-h-screen bg-[#020202] text-white overflow-x-hidden selection:bg-blue-500/40 ${GeistSans.className}`}>
+      
+      {/* KINETIC LAYERS */}
+      <VolumetricClock mouseX={mouseX} mouseY={mouseY} />
+      <ReactiveMetalSurface mouseX={mouseX} mouseY={mouseY} />
+      
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 z-[250] bg-blue-600 shadow-[0_0_20px_#3b82f6]"
+        style={{ scaleX }}
+      />
+
+      <nav className="fixed top-0 w-full z-[200] flex justify-between items-center p-10 border-b border-white/5 backdrop-blur-2xl bg-black/50">
+        <div className="flex items-center gap-6">
+          <span className="font-black tracking-[-0.08em] text-3xl italic">CLOCKWISE</span>
+          <div className="h-6 w-[1px] bg-white/10" />
+          <span className="text-blue-500 font-mono text-[10px] tracking-[0.5em] uppercase">Status: RD_ACTIVE</span>
+        </div>
+      </nav>
+
+      <main className="relative z-50">
+        
+        {/* --- THE CHAMBER (HERO) --- */}
+        <section className="min-h-screen flex items-center justify-center p-4 pt-32">
+          <div className="relative w-full max-w-6xl">
+            {/* Volumetric Container */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2 }}
+              className="relative p-12 md:p-20 border border-white/5 bg-black/60 backdrop-blur-3xl shadow-[0_60px_150px_rgba(0,0,0,1)] group"
+            >
+              {/* Internal HUD Elements */}
+              <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+              
+              <div className="relative flex flex-col items-center">
+                
+                <div className="mb-6 text-center">
+                  <div className="flex items-center justify-center gap-4 mb-4 opacity-30">
+                    <div className="h-[1px] w-12 bg-white" />
+                    <span className="font-mono text-[9px] tracking-[1em] uppercase">Facility_System_Main</span>
+                    <div className="h-[1px] w-12 bg-white" />
+                  </div>
+                  <ReverseTimer />
+                </div>
+
+                {/* LOGO CORE */}
+                <div className="relative w-full flex justify-center py-4">
+                  <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-blue-500/20 group-hover:border-blue-500/50 transition-colors" />
+                  <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-blue-500/20 group-hover:border-blue-500/50 transition-colors" />
+                  
+                  <img 
+                    src="/clockwise_precision.gif" 
+                    alt="Kinetic Asset" 
+                    className="w-full h-auto max-w-[780px] mix-blend-screen drop-shadow-[0_0_30px_rgba(59,130,246,0.1)]"
+                  />
+                </div>
+
+                {/* THE "DOCKABLE" ACCESS LINK */}
+                <motion.div 
+                  className="relative z-[100] mt-[-10%] md:mt-[-16%]"
+                  whileHover={{ y: -5 }}
+                >
+                  <motion.a
+                    href="/laboratory"
+                    className="flex flex-col items-center px-20 py-7 border border-blue-500/30 bg-black backdrop-blur-xl transition-all group overflow-hidden relative shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:shadow-[0_0_50px_rgba(59,130,246,0.2)]"
+                  >
+                    <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors" />
+                    <span className="relative z-10 font-mono text-[11px] tracking-[1.2em] uppercase text-white group-hover:text-blue-400 transition-colors pl-[1.2em]">
+                      Enter Laboratory
+                    </span>
+                    <div className="mt-3 h-[1px] w-0 bg-blue-400 group-hover:w-full transition-all duration-700 shadow-[0_0_10px_#3b82f6]" />
+                  </motion.a>
+                </motion.div>
+                
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* --- THE INVENTORY --- */}
+        <section className="max-w-7xl mx-auto px-8 py-80">
+          <div className="mb-24 flex items-center justify-between">
+            <h2 className="text-[11px] font-mono tracking-[1.5em] uppercase text-blue-500">Inventory_Batch_RD</h2>
+            <div className="h-px w-64 bg-gradient-to-l from-blue-500/40 to-transparent" />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <ProductCard title="Heavy Hide" year="REV_2026" category="Surface-Hardened Cowhide" />
+            <ProductCard title="Oxidized Shell" year="REV_2024" category="Membrane Filtration" />
+            <ProductCard title="Steel Knit" year="REV_2025" category="Structural Metallic Mesh" />
+          </div>
+        </section>
+
+      </main>
+
+      {/* --- FOOTER: APEX VERSION --- */}
+      <footer className="py-60 px-12 border-t border-white/5 bg-black flex flex-col items-center">
+        <motion.div 
+          className="group flex flex-col items-center gap-8 cursor-default"
+          initial={{ opacity: 0.5 }}
+          whileHover={{ opacity: 1 }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="h-px w-16 bg-blue-500/20 group-hover:w-48 group-hover:bg-blue-500 transition-all duration-1000" />
+            <div className="w-2 h-2 rounded-full border border-blue-500 group-hover:animate-ping" />
+            <div className="h-px w-16 bg-blue-500/20 group-hover:w-48 group-hover:bg-blue-500 transition-all duration-1000" />
+          </div>
+          
+          <span className="font-mono text-[10px] md:text-[12px] tracking-[2em] uppercase text-white/40 group-hover:text-white transition-all duration-1000 text-center pl-[2em] drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+            COUNTER CLOCKWISE TECHNICAL TEXTILES
+          </span>
+
+          <span className="font-mono text-[8px] tracking-[1em] uppercase text-blue-500/30 group-hover:text-blue-500/60 transition-colors">
+            All Systems Operational // © 2026
+          </span>
+        </motion.div>
+      </footer>
+    </div>
+  );
+}
