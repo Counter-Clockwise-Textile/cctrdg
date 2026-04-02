@@ -1,20 +1,9 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Official v4 Plugins */
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/container-queries";
-@plugin "@tailwindcss/aspect-ratio";
-
-@theme {
-  /* Theme variables linked to Geist font */
-  --font-sans: var(--font-geist-sans);
-  
-  /* Add any custom colors or spacing here */
-}
-
-/* Base layer overrides (if needed) */
 @layer base {
   body {
-    @apply antialiased;
+    @apply bg-white text-gray-900 antialiased;
   }
 }

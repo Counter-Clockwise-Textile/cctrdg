@@ -10,21 +10,23 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@tailwindcss/postcss": "^4.2.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
     "geist": "^1.7.0",
     "lucide-react": "^0.344.0",
-    "next": "canary",
-    "react": "rc",
-    "react-dom": "rc"
+    "next": "16.2.1-canary.17",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1"
   },
   "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }
