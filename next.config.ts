@@ -1,6 +1,8 @@
-export default {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   experimental: {
-    ppr: true,
+    // Migrated from 'ppr' to 'cacheComponents' per Next 16 Canary requirements
+    cacheComponents: true,
     inlineCss: true,
     useCache: true,
   },
@@ -14,4 +16,8 @@ export default {
       },
     ],
   },
+  // Note: Ensure your 'app/render.py' does not require extra Linux 
+  // dependencies not present in the Vercel build environment.
 };
+
+export default nextConfig;
