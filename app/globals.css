@@ -1,32 +1,20 @@
 @import "tailwindcss";
 
-@plugin "@tailwindcss/container-queries";
+/* Official v4 Plugins */
 @plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/aspect-ratio";
 
+@theme {
+  /* Theme variables linked to Geist font */
+  --font-sans: var(--font-geist-sans);
+  
+  /* Add any custom colors or spacing here */
+}
+
+/* Base layer overrides (if needed) */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  body {
+    @apply antialiased;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
-@supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  img[loading="lazy"] {
-    clip-path: inset(0.6px);
-  }
-}
-
-a,
-input,
-button {
-  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
