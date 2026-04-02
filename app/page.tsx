@@ -29,7 +29,6 @@ const ClockFace = () => {
 
 const TemporalHand = () => (
   <div className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none">
-    {/* MACHINED METAL PIVOT PIN */}
     <div 
       className="w-4 h-4 rounded-full z-[101] relative shadow-[0_0_15px_rgba(59,130,246,0.3)]"
       style={{
@@ -91,7 +90,7 @@ const ReverseTimer = () => {
 const ProductCard = ({ title, year, category }: { title: string; year: string; category: string }) => (
   <motion.div 
     whileHover={{ scale: 1.02 }}
-    className="glitch-hover relative overflow-hidden border border-white/10 p-12 group cursor-crosshair bg-[#0a0a0a] transition-all z-20"
+    className="glitch-hover relative overflow-visible border border-white/10 p-12 group cursor-crosshair bg-[#0a0a0a] transition-all z-20"
   >
     <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" 
          style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/black-linen.png')` }} />
@@ -102,16 +101,14 @@ const ProductCard = ({ title, year, category }: { title: string; year: string; c
     </div>
 
     <div className="relative">
-      {/* THE TIME WARP ECHOES */}
-      <span className="glitch-layer hidden absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-cyan-400/40 z-[-1] mix-blend-screen">
+      <span className="glitch-layer opacity-0 absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-cyan-400/40 z-[-1] mix-blend-screen pointer-events-none">
         {title}
       </span>
-      <span className="glitch-layer hidden absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-red-500/40 z-[-2] mix-blend-screen" style={{ animationDelay: '0.05s' }}>
+      <span className="glitch-layer opacity-0 absolute top-0 left-0 w-full text-3xl font-black uppercase tracking-tighter text-red-500/40 z-[-2] mix-blend-screen pointer-events-none" style={{ animationDelay: '0.05s' }}>
         {title}
       </span>
 
-      {/* PRIMARY TEXT */}
-      <h3 className="text-3xl font-black uppercase mb-1 tracking-tighter text-white/90 group-hover:text-blue-400 transition-colors">
+      <h3 className="text-3xl font-black uppercase mb-1 tracking-tighter text-white/90 group-hover:text-blue-400 transition-colors whitespace-nowrap">
         {title}
       </h3>
     </div>
@@ -128,7 +125,6 @@ export default function TemporalApp() {
   return (
     <div className="bg-[#050505] text-white min-h-screen relative selection:bg-blue-900 selection:text-white overflow-x-hidden">
       
-      {/* MACHINED HELVETICA & TIME-WARP ANIMATIONS */}
       <style dangerouslySetInnerHTML={{ __html: `
         .machined-text {
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
@@ -143,16 +139,16 @@ export default function TemporalApp() {
 
         @keyframes warp {
           0% { transform: translate(0); }
-          20% { transform: translate(-3px, 1px) skewX(5deg); }
-          40% { transform: translate(3px, -1px) skewX(-5deg); opacity: 0.7; }
-          60% { transform: translate(-1px, 0) skewX(2deg); }
-          80% { transform: translate(1px, 1px) skewX(-2deg); opacity: 0.8; }
+          20% { transform: translate(-4px, 2px) skewX(6deg); }
+          40% { transform: translate(4px, -2px) skewX(-6deg); opacity: 0.8; }
+          60% { transform: translate(-2px, 0) skewX(3deg); }
+          80% { transform: translate(2px, 2px) skewX(-3deg); opacity: 0.9; }
           100% { transform: translate(0); }
         }
 
         .glitch-hover:hover .glitch-layer {
-          animation: warp 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-          display: block;
+          animation: warp 0.1s linear infinite;
+          opacity: 1;
         }
       `}} />
 
@@ -167,10 +163,9 @@ export default function TemporalApp() {
       <Nav />
       
       <main className="relative z-30">
-        {/* RESPONSIVE HERO SECTION */}
         <section className="h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
           <TemporalHand />
-          <div className="relative p-8 md:p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-hidden w-full max-w-[95vw] md:max-w-4xl">
+          <div className="relative p-6 md:p-20 border border-white/5 bg-[#080808]/80 backdrop-blur-md shadow-2xl overflow-visible w-full max-w-[95vw] md:max-w-5xl">
              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                   style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/brushed-alum.png')` }} />
              
@@ -182,10 +177,10 @@ export default function TemporalApp() {
                    <ReverseTimer />
                 </div>
                 
-                <div className="relative mb-10 md:mb-14 px-2 md:px-10">
+                <div className="relative mb-10 md:mb-14 px-2 md:px-10 overflow-visible">
                    <div className="absolute top-0 left-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
                    <div className="absolute bottom-0 right-0 text-blue-500 shadow-[0_0_15px_#3b82f6] opacity-50 text-xl md:text-2xl">✦</div>
-                   <h1 className="machined-text text-[14vw] md:text-[180px] leading-[0.9] tracking-tighter text-center">
+                   <h1 className="machined-text text-[12vw] md:text-[170px] leading-[0.9] tracking-tighter text-center whitespace-nowrap break-keep">
                      Clockwise
                    </h1>
                 </div>
