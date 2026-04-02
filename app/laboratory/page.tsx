@@ -103,7 +103,7 @@ export default function ClockwiseLaboratoryTerminal() {
             {/* Header Block */}
             <div className="space-y-6">
               <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none italic">
-                Kinetic_ <br />Research
+                Counter_ <br />CLOCKWISE
               </h1>
               <div className="h-1 w-24 bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
               <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl leading-relaxed">
@@ -134,10 +134,9 @@ export default function ClockwiseLaboratoryTerminal() {
             {/* Full Width Large Text */}
             <div className="py-20 border-y border-white/5">
               <blockquote className="text-3xl md:text-4xl font-light italic text-white/80 leading-snug">
-                "We want to present an image of rugged manufacturing—not digital, but <span className="text-blue-500 not-italic font-black">KINETIC.</span>"
+                "Rugged manufacturing—not digital, but <span className="text-blue-500 not-italic font-black">KINETIC.</span>"
               </blockquote>
             </div>
-
           </div>
         </section>
 
