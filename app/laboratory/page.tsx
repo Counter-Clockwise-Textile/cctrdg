@@ -84,7 +84,7 @@ export default function ClockwiseLaboratoryTerminal() {
             <div className="p-6 border border-white/5 bg-white/5">
               <span className="block text-[8px] font-mono text-white/20 uppercase mb-2">System_Log</span>
               <p className="text-[10px] font-mono leading-relaxed text-blue-400/60 italic">
-                Scanning for structural anomalies... No reverse found in technical textile batch RD-1.7.
+                Scanning for structural anomalies... Keep moving backward...
               </p>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function ClockwiseLaboratoryTerminal() {
               </h1>
               <div className="h-1 w-24 bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
               <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl leading-relaxed">
-                Documentation of the applied benefit of technical products, focusing on organizational change through rugged manufacturing aesthetics.
+                Analysis, implementation, and execution of traditional products, with modernization only when necessary.
               </p>
             </div>
 
@@ -134,7 +134,7 @@ export default function ClockwiseLaboratoryTerminal() {
             {/* Full Width Large Text */}
             <div className="py-20 border-y border-white/5">
               <blockquote className="text-3xl md:text-4xl font-light italic text-white/80 leading-snug">
-                "Rugged manufacturing—not digital, but <span className="text-blue-500 not-italic font-black">KINETIC.</span>"
+                "Materials have not regressed over time— but <span className="text-blue-500 not-italic font-black"> the materials in modern textiles have.</span>"
               </blockquote>
             </div>
           </div>
