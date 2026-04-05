@@ -332,11 +332,11 @@ export default function ClockwiseLaboratory() {
       <nav className="fixed top-0 w-full z-[200] flex justify-between items-center p-8 border-b border-white/5 backdrop-blur-xl bg-black/60">
         <div className="flex items-center gap-4">
           <span className="font-black tracking-tighter text-2xl italic">CLOCKWISE</span>
-          <span className="text-blue-500 font-mono text-xs tracking-widest bg-blue-500/5 border border-blue-500/10 px-3 py-1 uppercase">Phase_1.7</span>
+          <span className="text-blue-500 font-mono text-xs tracking-widest bg-blue-500/5 border border-blue-500/10 px-3 py-1 uppercase">ToddCollins_1.72</span>
         </div>
         <div className="hidden md:flex gap-10 text-[9px] uppercase tracking-[0.4em] font-mono text-white/30">
-          <a href="#" className="hover:text-blue-400 transition-colors">Lab_Index</a>
-          <a href="#" className="hover:text-blue-400 transition-colors">System_Cart</a>
+          <a href="#" className="hover:text-blue-400 transition-colors">Laboratorial Activity</a>
+          <a href="#" className="hover:text-blue-400 transition-colors">Cart</a>
         </div>
       </nav>
 
@@ -349,7 +349,7 @@ export default function ClockwiseLaboratory() {
                 
                 <div className="mb-4 text-center">
                   <span className="block font-mono text-[8px] tracking-[0.8em] uppercase text-white/20 mb-3 ml-[0.8em]">
-                    Facility // RD_01_REVERSE
+                    PROGRESS IS REGRESSION. REGRESSION IS PROGRESS. TC_1.72
                   </span>
                   <ReverseTimer />
                 </div>
@@ -384,13 +384,13 @@ export default function ClockwiseLaboratory() {
 
         <section className="max-w-7xl mx-auto px-8 py-60">
           <div className="mb-16 flex items-center gap-6">
-            <h2 className="text-[10px] font-mono tracking-[1.2em] uppercase text-blue-500/60">Research_Inventory</h2>
+            <h2 className="text-[10px] font-mono tracking-[1.2em] uppercase text-blue-500/60">TEMPORALLY DISSOCIATED WARES</h2>
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <ProductCard title="Heavy Hide Parka" year="BATCH_2026" category="Hard-Anodized Surface" />
-            <ProductCard title="Oxidized Shell" year="BATCH_2024" category="Membrane Diffusion" />
-            <ProductCard title="Steel Knit" year="BATCH_2025" category="Metal-Infused Mesh" />
+            <ProductCard title="SiLVERKNIT Anti-EMF" year="FALL_2026" category="Conductive mesh thread" />
+            <ProductCard title="Solid Waxed Canvas" year="FALL_2026" category="Keep it simple" />
+            <ProductCard title="REiNFRONTWALL Tech" year="FALL_2026" category="Triple-flex reinforced walls" />
           </div>
         </section>
 
