@@ -146,9 +146,9 @@ export default function ClockwiseLaboratory() {
                   
                   <img 
                     src="/clockwise_precision.gif" 
-                    alt="Kinetic Core" 
-                    className="w-full h-auto max-w-[750px] mix-blend-screen opacity-100 select-none pointer-events-none"
-                  />
+                    alt="Kinetic Asset" 
+                    className="w-full h-auto max-w-[780px] mix-blend-overlay opacity-80 drop-shadow-[0_0_30px_rgba(59,130,246,0.1)]"
+                  /> 
                 </div>
 
                 {/* THE BOXED LINK: Increased negative offset to sit closer to central text */}
