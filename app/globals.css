@@ -8,6 +8,52 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-black text-gray-900 antialiased;
+  }
+
+  .metal-bg {
+    background-color: #080809;
+    background-image:
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 13px,
+        rgba(255,255,255,0.018) 13px,
+        rgba(255,255,255,0.018) 14px
+      ),
+      radial-gradient(ellipse 60% 40% at 75% 35%, rgba(196,106,0,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 35% at 20% 62%, rgba(34,81,160,0.28) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 25% at 50% 18%, rgba(107,53,200,0.14) 0%, transparent 70%);
+  }
+
+  .leather-panel {
+    background-color: #1a0f08;
+    background-image:
+      repeating-linear-gradient(
+        160deg,
+        transparent,
+        transparent 18px,
+        rgba(200,135,58,0.04) 18px,
+        rgba(200,135,58,0.04) 19px
+      ),
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,135,58,0.06) 0%, transparent 70%);
+    border-top: 1px solid rgba(200,135,58,0.2);
+    position: relative;
+  }
+
+  .leather-panel::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 32px;
+    right: 32px;
+    height: 1px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      rgba(200,135,58,0.35) 10px,
+      rgba(200,135,58,0.35) 18px
+    );
   }
 }

@@ -100,7 +100,7 @@ export default function ClockwiseLaboratory() {
   if (!mounted) return <div className="bg-black min-h-screen" />;
 
   return (
-    <div className={`min-h-screen bg-[#050505] text-white overflow-x-hidden selection:bg-blue-500/30 ${GeistSans.className}`}>
+    <div className={`min-h-screen metal-bg text-white overflow-x-hidden selection:bg-blue-500/30 ${GeistSans.className}`}>
       
       <ClockFace />
       <MetalSurface />
@@ -190,7 +190,7 @@ export default function ClockwiseLaboratory() {
       </main>
 
       {/* --- FOOTER (Revised Contrast and Laser Lines) --- */}
-      <footer className="py-48 px-12 border-t border-white/5 bg-[#030303] flex flex-col items-center overflow-hidden">
+      <footer className="leather-panel py-48 px-12 flex flex-col items-center overflow-hidden">
         <motion.div 
           initial={{ opacity: 0.4 }}
           whileHover={{ opacity: 1 }}
