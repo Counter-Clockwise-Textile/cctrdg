@@ -9,27 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.9",
-    "@heroicons/react": "^2.2.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.0.0",
-    "geist": "^1.7.0",
-    "lucide-react": "^0.344.0",
+    "@headlessui/react": "2.2.9",
+    "@heroicons/react": "2.2.0",
+    "clsx": "2.1.1",
+    "framer-motion": "11.18.2",
+    "geist": "1.7.0",
+    "lucide-react": "0.344.0",
     "next": "16.2.1-canary.17",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
-    "sonner": "^2.0.7"
+    "sonner": "2.0.7"
   },
   "devDependencies": {
-    "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/postcss": "^4.0.14",
-    "@tailwindcss/typography": "^0.5.15",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^4.0.14",
-    "typescript": "^5"
+    "@tailwindcss/container-queries": "0.1.1",
+    "@tailwindcss/postcss": "4.2.2",
+    "@tailwindcss/typography": "0.5.19",
+    "@types/node": "20.19.37",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "4.2.2",
+    "typescript": "5.9.3"
   }
 }
