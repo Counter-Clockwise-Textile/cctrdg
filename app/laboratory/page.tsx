@@ -134,7 +134,7 @@ export default function ClockwiseLaboratoryTerminal() {
             {/* Full Width Large Text */}
             <div className="py-20 border-y border-white/5">
               <blockquote className="text-3xl md:text-4xl font-light italic text-white/80 leading-snug">
-                "Materials have not regressed over time— but <span className="text-blue-500 not-italic font-black"> the materials in modern textiles have.</span>"
+                "Materials inertly have not regressed over time— but <span className="text-blue-500 not-italic font-black"> materials used in modern textiles certainly have.</span>"
               </blockquote>
             </div>
           </div>
