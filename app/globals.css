@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-brand-blue: #0070f3;
+}
 
 @layer base {
   body {
