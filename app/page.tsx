@@ -331,7 +331,7 @@ export default function ClockwiseLaboratory() {
 
       <nav className="fixed top-0 w-full z-[200] flex justify-between items-center p-8 border-b border-white/5 backdrop-blur-xl bg-black/60">
         <div className="flex items-center gap-4">
-          <span className="font-black tracking-tighter text-2xl italic">CLOCKWISE</span>
+          <span className="font-black tracking-tighter text-2xl italic scale-x-[-1] inline-block">CLOCKWISE</span>
           <span className="text-blue-500 font-mono text-xs tracking-widest bg-blue-500/5 border border-blue-500/10 px-3 py-1 uppercase">ToddCollins_1.72</span>
         </div>
         <div className="hidden md:flex gap-10 text-[9px] uppercase tracking-[0.4em] font-mono text-white/30">
