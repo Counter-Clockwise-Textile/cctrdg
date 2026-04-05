@@ -384,7 +384,7 @@ export default function ClockwiseLaboratory() {
 
         <section className="max-w-7xl mx-auto px-8 py-60">
           <div className="mb-16 flex items-center gap-6">
-            <h2 className="text-[10px] font-mono tracking-[1.2em] uppercase text-blue-500/60">TEMPORALLY DISSOCIATED WARES</h2>
+            <h2 className="text-[10px] font-mono tracking-[1.2em] uppercase text-blue-500/60">TEMPORALLY DISSOCIATIVE ARTIFACTS</h2>
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

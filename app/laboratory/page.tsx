@@ -36,7 +36,7 @@ const HeaderHUD = () => (
       <span className="font-black tracking-tighter text-xl italic uppercase">Laboratory_Terminal</span>
     </div>
     <div className="font-mono text-[9px] tracking-[0.5em] text-white/30 uppercase">
-      Access_Level: RD_OVERRIDE // 04.01.26
+      Access_Level: Dr. Todd Collins // 04.01.26
     </div>
   </header>
 );
