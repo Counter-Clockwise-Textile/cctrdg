@@ -90,7 +90,7 @@ export default function ClockwiseLaboratoryTerminal() {
           </div>
 
           <div className="font-mono text-[8px] text-white/10 uppercase tracking-[0.5em]">
-            RD_UNIT_01 // SECURE_LINE
+            UNIT_DrToddCollins
           </div>
         </aside>
 
