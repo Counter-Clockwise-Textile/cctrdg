@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "CLOCKWISE // REV-01",
+  title: "ƎƧIWʞƆOIƆ // Backward We Go",
   description: "Counter-Clockwise R&D Group",
 };
 
