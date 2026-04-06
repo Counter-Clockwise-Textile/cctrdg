@@ -60,7 +60,7 @@ export default function ClockwiseLaboratoryTerminal() {
   }, [mouseX, mouseY]); // Adding dependencies for absolute safety
 
   return (
-    <div className={`min-h-screen bg-[#020202] text-white overflow-hidden selection:bg-blue-500/40 ${GeistSans.className}`}>
+    <div className={`min-h-screen metal-bg text-white overflow-hidden selection:bg-blue-500/40 ${GeistSans.className}`}>
       
       {/* Shared Kinetic Backgrounds */}
       <ReactiveMetalSurface mouseX={mouseX} mouseY={mouseY} />
@@ -81,7 +81,7 @@ export default function ClockwiseLaboratoryTerminal() {
               </nav>
             </div>
             
-            <div className="p-6 border border-white/5 bg-white/5">
+            <div className="p-6 border border-white/5 bg-black/40 backdrop-blur-sm">
               <span className="block text-[8px] font-mono text-white/20 uppercase mb-2">System_Log</span>
               <p className="text-[10px] font-mono leading-relaxed text-blue-400/60 italic">
                 Scanning for structural anomalies... Keep moving backward...
@@ -143,7 +143,7 @@ export default function ClockwiseLaboratoryTerminal() {
       </main>
 
       {/* Persistent Laser Line Footer */}
-      <footer className="fixed bottom-0 right-0 p-8 z-[100]">
+      <footer className="fixed bottom-0 right-0 p-8 z-[100] leather-panel">
         <div className="flex items-center gap-6">
           <div className="h-[1px] w-12 bg-blue-500/20" />
           <span className="font-mono text-[9px] tracking-[1em] text-white/20 uppercase">
