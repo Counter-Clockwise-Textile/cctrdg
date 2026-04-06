@@ -349,7 +349,7 @@ export default function ClockwiseLaboratory() {
                 
                 <div className="mb-4 text-center">
                   <span className="block font-mono text-[8px] tracking-[0.8em] uppercase text-white/20 mb-3 ml-[0.8em]">
-                    PROGRESS IS REGRESSION. REGRESSION IS PROGRESS. TC_1.72
+                    PROGRESS IS REGRESSION. REGRESSION IS PROGRESS.
                   </span>
                   <ReverseTimer />
                 </div>
