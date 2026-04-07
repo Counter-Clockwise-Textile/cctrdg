@@ -65,7 +65,7 @@ const ReverseTimer = () => {
     return () => clearInterval(interval);
   }, [mounted]);
   return (
-    <div className="font-mono text-2xl tracking-[0.3em] text-blue-400/80 uppercase">
+    <div className="font-mono text-2xl tracking-[0.3em] text-blue-300 uppercase">
       {mounted ? time.toString().padStart(6, '0') : "000000"}
     </div>
   );
@@ -206,12 +206,12 @@ const WatchFace = () => {
       ctx.lineWidth = 0.5;
       ctx.stroke();
 
-      ctx.font = '500 10px monospace';
-      ctx.fillStyle = 'rgba(255,255,255,0.2)';
+      ctx.font = '500 11px monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
       ctx.textAlign = 'center';
       ctx.fillText('COUNTER CLOCKWISE', CX, CY-R*0.28);
-      ctx.font = '400 8px monospace';
-      ctx.fillStyle = 'rgba(74,127,212,0.4)';
+      ctx.font = '400 9px monospace';
+      ctx.fillStyle = 'rgba(147,197,253,0.9)';
       ctx.fillText('TECHNICAL TEXTILES', CX, CY-R*0.18);
 
       ctx.save();
@@ -302,11 +302,11 @@ const ProductCard = ({ title, year, category }: { title: string; year: string; c
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
     <div className="relative z-10">
       <div className="flex justify-between items-start mb-24">
-        <span className="font-mono text-[9px] text-white/20 tracking-[0.2em]">{year} // R&D_LOG</span>
+        <span className="font-mono text-[11px] text-white/70 tracking-[0.2em]">{year} // R&D_LOG</span>
         <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
       </div>
       <h3 className="text-3xl font-bold uppercase tracking-tighter mb-2 group-hover:text-blue-400 transition-colors">{title}</h3>
-      <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/10">{category}</p>
+      <p className="font-mono text-[11px] uppercase tracking-[0.4em] text-white/60">{category}</p>
     </div>
   </motion.div>
 );
@@ -332,11 +332,11 @@ export default function ClockwiseLaboratory() {
       <nav className="fixed top-0 w-full z-[200] flex justify-between items-center p-8 border-b border-white/5 backdrop-blur-xl bg-black/60">
         <div className="flex items-center gap-4">
           <span className="font-black tracking-tighter text-2xl italic scale-x-[-1] inline-block">CLOCKWISE</span>
-          <span className="text-blue-500 font-mono text-xs tracking-widest bg-blue-500/5 border border-blue-500/10 px-3 py-1 uppercase">ToddCollins_1.72</span>
+          <span className="text-blue-300 font-mono text-sm tracking-widest bg-blue-500/5 border border-blue-500/10 px-3 py-1 uppercase">ToddCollins_1.72</span>
         </div>
-        <div className="hidden md:flex gap-10 text-[9px] uppercase tracking-[0.4em] font-mono text-white/30">
-          <a href="#" className="hover:text-blue-400 transition-colors">Laboratorial Activity</a>
-          <a href="#" className="hover:text-blue-400 transition-colors">Cart</a>
+        <div className="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.4em] font-mono text-white/70">
+          <a href="#" className="hover:text-blue-300 transition-colors">Laboratorial Activity</a>
+          <a href="#" className="hover:text-blue-300 transition-colors">Cart</a>
         </div>
       </nav>
 
@@ -348,7 +348,7 @@ export default function ClockwiseLaboratory() {
               <div className="relative flex flex-col items-center">
                 
                 <div className="mb-4 text-center">
-                  <span className="block font-mono text-[8px] tracking-[0.8em] uppercase text-white/20 mb-3 ml-[0.8em]">
+                  <span className="block font-mono text-[10px] tracking-[0.8em] uppercase text-white/70 mb-3 ml-[0.8em]">
                     PROGRESS IS REGRESSION. REGRESSION IS PROGRESS.
                   </span>
                   <ReverseTimer />
@@ -370,7 +370,7 @@ export default function ClockwiseLaboratory() {
                     className="flex flex-col items-center px-16 py-5 border border-white/10 bg-black/90 backdrop-blur-md transition-all group overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <span className="relative z-10 font-mono text-[10px] tracking-[1em] uppercase text-white group-hover:text-blue-400 transition-colors pl-[1em]">
+                    <span className="relative z-10 font-mono text-[12px] tracking-[1em] uppercase text-white group-hover:text-blue-300 transition-colors pl-[1em]">
                       Enter Laboratory
                     </span>
                     <div className="mt-2 h-0.5 w-0 bg-blue-500 group-hover:w-full transition-all duration-500" />
@@ -384,7 +384,7 @@ export default function ClockwiseLaboratory() {
 
         <section className="max-w-7xl mx-auto px-8 py-60">
           <div className="mb-16 flex items-center gap-6">
-            <h2 className="text-[10px] font-mono tracking-[1.2em] uppercase text-blue-500/60">TEMPORALLY DISSOCIATIVE ARTIFACTS</h2>
+            <h2 className="text-[12px] font-mono tracking-[1.2em] uppercase text-blue-400">TEMPORALLY DISSOCIATIVE ARTIFACTS</h2>
             <div className="h-px flex-grow bg-white/5" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -403,7 +403,7 @@ export default function ClockwiseLaboratory() {
           className="group transition-all duration-700 flex flex-col items-center gap-6"
         >
           <div className="h-px w-24 bg-blue-500/30 group-hover:w-80 group-hover:bg-blue-400 transition-all duration-1000" />
-          <span className="font-mono text-[10px] md:text-[11px] tracking-[1.8em] uppercase text-white/60 group-hover:text-blue-100 transition-colors text-center pl-[1.8em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+          <span className="font-mono text-[12px] md:text-[13px] tracking-[1.8em] uppercase text-white/80 group-hover:text-white transition-colors text-center pl-[1.8em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
             COUNTER CLOCKWISE TECHNICAL TEXTILES
           </span>
           <div className="h-px w-24 bg-blue-500/30 group-hover:w-80 group-hover:bg-blue-400 transition-all duration-1000" />
