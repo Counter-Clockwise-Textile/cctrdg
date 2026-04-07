@@ -403,7 +403,7 @@ export default function ClockwiseLaboratory() {
           className="group transition-all duration-700 flex flex-col items-center gap-6"
         >
           <div className="h-px w-24 bg-blue-500/30 group-hover:w-80 group-hover:bg-blue-400 transition-all duration-1000" />
-          <span className="font-mono text-[12px] md:text-[13px] tracking-[1.8em] uppercase text-white/80 group-hover:text-white transition-colors text-center pl-[1.8em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+          <span className="font-mono text-[10px] md:text-[10px] tracking-[1.8em] uppercase text-white/80 group-hover:text-white transition-colors text-center pl-[1.8em] drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
             COUNTER CLOCKWISE TECHNICAL TEXTILES
           </span>
           <div className="h-px w-24 bg-blue-500/30 group-hover:w-80 group-hover:bg-blue-400 transition-all duration-1000" />
